@@ -1,10 +1,10 @@
 
 import { useDispatch } from 'react-redux';
-import {Image, SimpleGrid, Card, Text, Select, TextInput, Group, rem, Box, Flex, Button} from '@mantine/core';
+import {Image, SimpleGrid, Card, Text, Select, TextInput, Group, rem, Box, Flex, Button, Grid} from '@mantine/core';
 import {BiPlusCircle, BiSearchAlt2} from "react-icons/bi";
 import AppLayout from "../Components/AppLayout.tsx"
-import {logout} from "./auth/authSlice.tsx";
-import React from "react";
+import {logout} from "../redux/slices/authSlice.tsx";
+import {useNavigate} from "react-router-dom";
 
 
 const images = [
@@ -30,30 +30,41 @@ const images = [
 function Dashboard() {
     const icon = <BiSearchAlt2 style={{ width: rem(16), height: rem(16) }} />;
     const dispatch = useDispatch();
+const navigate = useNavigate();
+    function handleClick() {
+        dispatch(logout());
+        navigate('/login')
+    }
+
     return (
         <AppLayout title = {''}>
         <Card>
             <Card.Section style={{padding: '1rem'}} withBorder>
                 <Box style={{display:"flex", justifyContent:"space-between"}}>
                     <Group justify='space-between' w='100%'>
-                       <Group>
+                       <Grid>
+                           <Grid.Col span={{xs:12, sm:6}}>
                            <Select
                                placeholder="All Products"
                                data={['React', 'Angular', 'Vue', 'Svelte']}
                                allowDeselect={false}
                            />
+                           </Grid.Col>
+                           <Grid.Col span={{xs:12, sm:6}}>
                            <TextInput
                                leftSectionPointerEvents="none"
                                leftSection={icon}
                                placeholder="Search Here"
                            />
-                       </Group>
-                        <Button color='red' onClick={() => dispatch(logout())}>Logout</Button>
+                           </Grid.Col>
+
+                       </Grid>
+                        <Button color='red' onClick={handleClick}>Logout</Button>
                     </Group>
                 </Box>
             </Card.Section>
             <Card.Section inheritPadding mt="sm" pb="md">
-                <SimpleGrid cols={{ base: 2, sm: 4, lg: 8}}>
+                <SimpleGrid cols={{ xs:3, sm: 4, lg: 4}}>
                     {images.map((image) => (
                         <Card shadow="sm" radius="md" withBorder>
                             <Group justify="center" gap="lg"    >

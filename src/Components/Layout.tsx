@@ -1,4 +1,4 @@
-import {AppShell, Group, rem, Text} from '@mantine/core';
+import {AppShell, Group, rem} from '@mantine/core';
 import {useHeadroom} from '@mantine/hooks';
 import {MantineLogo} from '@mantinex/mantine-logo';
 import Menu from '../Components/Menu';
@@ -22,10 +22,7 @@ const Layout: FC<LayoutProps> = ({children}) => {
             </AppShell.Header>
 
             <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
-
-                <Text size="lg" my="md" maw={600} mx="auto">
                     {children}
-                </Text>
             </AppShell.Main>
         </AppShell>
     );

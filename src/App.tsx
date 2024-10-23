@@ -2,7 +2,8 @@
 import './App.css'
 import {useLayoutEffect} from 'react'
 import Layout from "./Components/Layout";
-import { Group, Flex} from "@mantine/core";
+import { Group, Button, Text} from "@mantine/core";
+import {Link} from 'react-router-dom'
 
 
 function App() {
@@ -13,10 +14,10 @@ function App() {
 
   return (
       <Layout title = {''}>
-          <Group justify="center">
-              <Flex>
-                  <h1> Home page </h1>
-              </Flex>
+          <Group justify="center" align="center"  style={{display:"flex", flexDirection:"column"}}>
+                  <h1> Welcome to Home page </h1>
+                  <Text>Please login to go to Dashboard</Text>
+              <Link to='login'><Button w={200} >Login</Button></Link>
           </Group>
       </Layout>
   )
